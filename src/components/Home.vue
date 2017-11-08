@@ -31,20 +31,9 @@
 </template>
 <script>
   export default {
-    data () {
-      return {
-        meetups: [
-          {
-            id: 'meetup-new-york',
-            title: 'Meetup in New York',
-            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/47/New_york_times_square-terabass.jpg'
-          },
-          {
-            id: 'meetup-paris',
-            title: 'Meetup in Paris',
-            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/9/97/01_vue_Paris_depuis_Notre-Dame.jpg'
-          }
-        ]
+    computed: {
+      meetups () {
+        return this.$store.getters.featureMeetups
       }
     },
     methods: {
