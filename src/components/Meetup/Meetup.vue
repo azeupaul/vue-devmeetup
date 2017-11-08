@@ -11,9 +11,9 @@
             height="400px"
           ></v-card-media>
           <v-card-text>
-            <div class="info--text">{{ meetup.date }} - Douala</div>
+            <div class="info--text">{{ meetup.date }} - {{ meetup.location }}</div>
             <div>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto at consectetur doloribus ducimus excepturi ipsum iste laudantium, numquam pariatur praesentium quod ratione sapiente voluptatem. Assumenda fugiat ipsam necessitatibus sint sit!
+              {{ meetup.description }}
             </div>
           </v-card-text>
           <v-card-actions>
