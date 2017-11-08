@@ -19,7 +19,7 @@
                   </div>
                 </v-card-title>
                 <v-card-actions>
-                  <v-btn flat>
+                  <v-btn flat to="/meetups/new-york">
                     <v-icon left light>arrow_forward</v-icon>
                     View meetup
                   </v-btn>
