@@ -10,11 +10,12 @@
     </v-layout>
     <v-layout row wrap class="mt-2">
       <v-flex xs12>
-        <v-carousel>
+        <v-carousel style="cursor: pointer">
           <v-carousel-item
             v-for="meetup in meetups"
             :src="meetup.imageUrl"
             :key="meetup.id"
+            @click="onLoadMeetup(meetup.id)"
           >
             <div class="title">{{ meetup.title }} </div>
           </v-carousel-item>
@@ -44,6 +45,11 @@
             imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/9/97/01_vue_Paris_depuis_Notre-Dame.jpg'
           }
         ]
+      }
+    },
+    methods: {
+      onLoadMeetup (id) {
+        this.$router.push('/meetups/' + id)
       }
     }
   }
