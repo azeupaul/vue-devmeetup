@@ -8,7 +8,7 @@ export const store = new Vuex.Store({
     loadedMeetups: [
       {
         id: 'meetup-new-york',
-        date: '2017-11-9',
+        date: new Date(),
         title: 'Meetup in New York',
         location: 'New York',
         description: 'Awesome meetup in New York at TimeSquare Garden.',
@@ -16,7 +16,7 @@ export const store = new Vuex.Store({
       },
       {
         id: 'meetup-paris',
-        date: '2017-11-10',
+        date: new Date(),
         title: 'Meetup in Paris',
         location: 'Paris',
         description: 'Great meetup!',
