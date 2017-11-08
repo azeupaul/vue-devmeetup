@@ -34,7 +34,7 @@ export const store = new Vuex.Store({
         location: payload.location,
         imageUrl: payload.imageUrl,
         description: payload.description,
-        date: new Date()
+        date: payload.date
       }
 
       commit('createMeetup', meetup)
