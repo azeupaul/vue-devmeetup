@@ -52,10 +52,21 @@
         password: ''
       }
     },
+    computed: {
+      user () {
+        return this.$store.getters.user
+      }
+    },
+    watch: {
+      user (value) {
+        if (value !== null && value !== undefined) {
+          this.$router.push('/')
+        }
+      }
+    },
     methods: {
       onSignin () {
-        console.log('Sign up trigger')
-        console.log({email: this.email, password: this.password})
+        this.$store.dispatch('SignUserIn', {email: this.email, password: this.password})
       }
     }
   }
