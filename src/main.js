@@ -8,6 +8,7 @@ import App from './App'
 import router from './router'
 import { store } from './store'
 import DateFilter from './filters/date'
+import * as firebase from 'firebase'
 
 Vue.use(Vuetify)
 
@@ -20,5 +21,14 @@ new Vue({
   el: '#app',
   router,
   store,
-  render: h => h(App)
+  render: h => h(App),
+  created () {
+    firebase.initializeApp({
+      apiKey: 'AIzaSyCbp0pwBFTvhdhloxUMbsBKOEFVdecAIBw',
+      authDomain: 'devmeetup-tuto.firebaseapp.com',
+      databaseURL: 'https://devmeetup-tuto.firebaseio.com',
+      projectId: '',
+      storageBucket: 'devmeetup-tuto.appspot.com'
+    })
+  }
 })
