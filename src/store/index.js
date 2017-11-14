@@ -24,7 +24,9 @@ export const store = new Vuex.Store({
         imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/9/97/01_vue_Paris_depuis_Notre-Dame.jpg'
       }
     ],
-    user: null
+    user: null,
+    loading: false,
+    error: null
   },
   actions: {
     createMeetup ({commit}, payload) {
@@ -80,6 +82,15 @@ export const store = new Vuex.Store({
     },
     setUser (state, user) {
       state.user = user
+    },
+    setLoading (state, status) {
+      state.loading = status
+    },
+    setError (state, error) {
+      state.error = error
+    },
+    clearError (state) {
+      state.error = null
     }
   },
   getters: {
