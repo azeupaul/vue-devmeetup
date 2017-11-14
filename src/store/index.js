@@ -84,6 +84,9 @@ export const store = new Vuex.Store({
             console.log(error)
           }
         )
+    },
+    clearError ({commit}) {
+      commit('clearError')
     }
   },
   mutations: {
@@ -121,6 +124,12 @@ export const store = new Vuex.Store({
     },
     user (state) {
       return state.user
+    },
+    loading (state) {
+      return state.loading
+    },
+    error (state) {
+      return state.error
     }
   }
 })
