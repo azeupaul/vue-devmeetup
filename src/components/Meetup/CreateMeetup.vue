@@ -32,13 +32,14 @@
           </v-layout>
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <v-text-field
-                name="imageUrl"
-                label="Image url"
-                id="image-url"
-                required
-                v-model="imageUrl"
-              ></v-text-field>
+              <v-btn color="primary" @click="onPickFile">Upload Image</v-btn>
+              <input
+                type="file"
+                ref="inputFile"
+                style="display: none;"
+                accept="image/*"
+                @change="onFilePicked"
+              />
             </v-flex>
           </v-layout>
           <v-layout row>
@@ -137,6 +138,21 @@
         }
         this.$store.dispatch('createMeetup', meetupData)
         this.$router.push('/meetups')
+      },
+      onPickFile () {
+        this.$refs.inputFile.click()
+      },
+      onFilePicked (event) {
+        const files = event.target.files
+        const filename = files[0].name
+        if (filename.lastIndexOf('.') <= 0) {
+          return alert('Please choose a valid image')
+        }
+        const fileReader = new FileReader()
+        fileReader.addEventListener('load', () => {
+          this.imageUrl = fileReader.result
+        })
+        fileReader.readAsDataURL(files[0])
       }
     }
   }
