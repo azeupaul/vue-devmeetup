@@ -31,6 +31,20 @@ export const store = new Vuex.Store({
     error: null
   },
   actions: {
+    registerUserForMeetup ({commit, getters}, payload) {
+      commit('setLoading', true)
+      commit('registerUserForMeetup', {
+        meetupId: payload.meetupId
+      })
+      commit('setLoading', false)
+    },
+    unregisterUserFromMeetup ({commit, getters}, payload) {
+      commit('setLoading', true)
+      commit('unregisterUserFromMeetup', {
+        meetupId: payload.meetupId
+      })
+      commit('setLoading', false)
+    },
     loadedMeetups ({commit}) {
       commit('setLoading', true)
       firebase.database().ref('meetups').once('value')
@@ -163,6 +177,18 @@ export const store = new Vuex.Store({
     }
   },
   mutations: {
+    registerUserForMeetup (state, payload) {
+      const meetupId = payload.meetupId
+      if (state.user.registeredMeetups.findIndex(id => id === meetupId) >= 0) {
+        return
+      }
+      state.user.registeredMeetups.push(meetupId)
+    },
+    unregisterUserFromMeetup (state, payload) {
+      const meetupId = payload.meetupId
+      const registeredMeetups = state.user.registeredMeetups
+      registeredMeetups.splice(registeredMeetups.findIndex(id => id === meetupId), 1)
+    },
     createMeetup (state, payload) {
       state.loadedMeetups.push(payload)
     },
