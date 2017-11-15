@@ -98,6 +98,7 @@
         title: '',
         location: '',
         imageUrl: '',
+        image: null,
         description: '',
         date: new Date(),
         time: new Date()
@@ -129,10 +130,13 @@
         if (!this.formIsValid) {
           return
         }
+        if (!this.image) {
+          return
+        }
         const meetupData = {
           title: this.title,
           location: this.location,
-          imageUrl: this.imageUrl,
+          image: this.image,
           description: this.description,
           date: this.submittableDateTime
         }
@@ -153,6 +157,7 @@
           this.imageUrl = fileReader.result
         })
         fileReader.readAsDataURL(files[0])
+        this.image = files[0]
       }
     }
   }
