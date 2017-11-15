@@ -10,9 +10,11 @@ import { store } from './store'
 import DateFilter from './filters/date'
 import * as firebase from 'firebase'
 import AlertCmp from './components/Shared/Alert'
+import EditMeetupDetailsDialog from './components/Meetup/Edit/EditMeetupDetailsDialog'
 
 Vue.use(Vuetify)
 Vue.component('app-alert', AlertCmp)
+Vue.component('app-edit-meetup-dialog', EditMeetupDetailsDialog)
 
 Vue.config.productionTip = false
 

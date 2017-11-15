@@ -13,7 +13,8 @@ export const store = new Vuex.Store({
         title: 'Meetup in New York',
         location: 'New York',
         description: 'Awesome meetup in New York at TimeSquare Garden.',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/47/New_york_times_square-terabass.jpg'
+        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/47/New_york_times_square-terabass.jpg',
+        creatorId: 'nkaX4eF9H9O5N3q1LjQDIjunZst2'
       },
       {
         id: 'meetup-paris',
@@ -21,7 +22,8 @@ export const store = new Vuex.Store({
         title: 'Meetup in Paris',
         location: 'Paris',
         description: 'Great meetup!',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/9/97/01_vue_Paris_depuis_Notre-Dame.jpg'
+        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/9/97/01_vue_Paris_depuis_Notre-Dame.jpg',
+        creatorId: 'nkaX4eF9H9O5N3q1LjQDIjunZst3'
       }
     ],
     user: null,
@@ -89,6 +91,22 @@ export const store = new Vuex.Store({
           console.log(error)
         })
     },
+    updateMeetup ({commit}, payload) {
+      commit('setLoading', true)
+      const updateObj = {}
+      if (payload.title) {
+        updateObj.title = payload.title
+      }
+      if (payload.description) {
+        updateObj.description = payload.description
+      }
+      if (payload.date) {
+        updateObj.date = payload.date
+      }
+      // Reach out firebase there
+      commit('updateMeetup', payload)
+      commit('setLoading', false)
+    },
     registerUser ({commit}, payload) {
       commit('setLoading', true)
       commit('clearError')
@@ -147,6 +165,20 @@ export const store = new Vuex.Store({
   mutations: {
     createMeetup (state, payload) {
       state.loadedMeetups.push(payload)
+    },
+    updateMeetup (state, payload) {
+      const meetup = state.loadedMeetups.find((meetup) => {
+        return meetup.id === payload.id
+      })
+      if (payload.title) {
+        meetup.title = payload.title
+      }
+      if (payload.description) {
+        meetup.description = payload.description
+      }
+      if (payload.date) {
+        meetup.date = payload.date
+      }
     },
     setUser (state, user) {
       state.user = user
