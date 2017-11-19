@@ -14,6 +14,7 @@ import EditMeetupDetailsDialog from './components/Meetup/Edit/EditMeetupDetailsD
 import EditMeetupDateDialog from './components/Meetup/Edit/EditMeetupDateDialog.vue'
 import EditMeetupTimeDialog from './components/Meetup/Edit/EditMeetupTimeDialog.vue'
 import RegistrationDialog from './components/Meetup/Registration/RegistrationDialog.vue'
+import firebaseConf from '../config/firebase'
 
 Vue.use(Vuetify)
 Vue.component('app-alert', AlertCmp)
@@ -33,13 +34,7 @@ new Vue({
   store,
   render: h => h(App),
   created () {
-    firebase.initializeApp({
-      apiKey: 'AIzaSyCbp0pwBFTvhdhloxUMbsBKOEFVdecAIBw',
-      authDomain: 'devmeetup-tuto.firebaseapp.com',
-      databaseURL: 'https://devmeetup-tuto.firebaseio.com',
-      projectId: '',
-      storageBucket: 'devmeetup-tuto.appspot.com'
-    })
+    firebase.initializeApp(firebaseConf)
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.$store.dispatch('autoSignin', user)
